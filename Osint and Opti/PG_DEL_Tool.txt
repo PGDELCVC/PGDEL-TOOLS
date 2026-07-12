@@ -1,0 +1,129 @@
+@echo off
+setlocal EnableDelayedExpansion
+
+title PG DEL PANEL - OSINT GAMING
+color 0D
+mode con cols=110 lines=40
+
+
+:: DOSSIERS
+
+set ROOT=%~dp0
+
+for %%A in (
+Reports
+Logs
+Workspace
+Backup
+Config
+) do (
+if not exist "%ROOT%%%A" mkdir "%ROOT%%%A"
+)
+
+
+set REPORT=%ROOT%Reports\report.txt
+set HTML=%ROOT%Reports\report.html
+set LOG=%ROOT%Logs\activity.log
+
+
+
+:: LOG SYSTEM
+
+:WRITELOG
+echo [%date% %time%] %~1>>"%LOG%"
+exit /b
+
+
+
+:: START ANIMATION
+
+:START
+
+cls
+echo.
+echo.
+echo              ██████╗  ██████╗     ██████╗ ███████╗██╗
+echo              ██╔══██╗██╔════╝     ██╔══██╗██╔════╝██║
+echo              ██████╔╝██║  ███╗    ██║  ██║█████╗  ██║
+echo              ██╔═══╝ ██║   ██║    ██║  ██║██╔══╝  ██║
+echo              ██║     ╚██████╔╝    ██████╔╝███████╗███████╗
+echo.
+echo.
+echo                    P G  D E L  P A N E L
+echo.
+echo.
+
+set BAR=
+
+for /L %%i in (1,1,25) do (
+set BAR=!BAR!█
+cls
+color 0D
+echo.
+echo                    PG DEL INITIALISATION
+echo.
+echo                    [!BAR!]
+timeout /t 1 >nul
+)
+
+goto MENU
+
+
+
+:: MENU PRINCIPAL
+
+:MENU
+
+cls
+color 0D
+
+echo.
+echo.
+echo        ╔══════════════════════════╗        ╔══════════════════════════╗
+echo        ║        SYSTEM CORE       ║        ║        OSINT CORE        ║
+echo        ╠══════════════════════════╣        ╠══════════════════════════╣
+echo        ║ [01] CPU INFO            ║        ║ [11] DOMAINE             ║
+echo        ║ [02] GPU INFO            ║        ║ [12] DNS LOOKUP           ║
+echo        ║ [03] RAM INFO            ║        ║ [13] IP ANALYSIS          ║
+echo        ║ [04] WINDOWS INFO        ║        ║ [14] URL TOOLS            ║
+echo        ║ [05] FPS MODE            ║        ║ [15] HASH SHA256           ║
+echo        ║ [06] CLEAN TEMP          ║        ║ [16] IMAGE INFO            ║
+echo        ║ [07] FIVE M REFRESH      ║        ║ [17] PSEUDO PUBLIC         ║
+echo        ║ [08] BACKUP              ║        ║ [18] RAPPORT                ║
+echo        ║ [09] LOGS                ║        ║ [19] HTML EXPORT             ║
+echo        ║ [10] QUIT                ║        ║ [20] TOOLS CHECK             ║
+echo        ╚══════════════════════════╝        ╚══════════════════════════╝
+
+echo.
+echo        ╔════════════════════════════════════════════════════════════╗
+echo        ║                    PG DEL TERMINAL                         ║
+echo        ╚════════════════════════════════════════════════════════════╝
+echo.
+
+set /p choix="                 PG DEL >> "
+
+
+if "%choix%"=="01" goto CPU
+if "%choix%"=="02" goto GPU
+if "%choix%"=="03" goto RAM
+if "%choix%"=="04" goto WIN
+if "%choix%"=="05" goto FPS
+if "%choix%"=="06" goto CLEAN
+if "%choix%"=="07" goto FIVEM
+if "%choix%"=="08" goto BACKUP
+if "%choix%"=="09" goto LOGS
+if "%choix%"=="10" exit
+
+if "%choix%"=="11" goto DOMAIN
+if "%choix%"=="12" goto DNS
+if "%choix%"=="13" goto IP
+if "%choix%"=="14" goto URL
+if "%choix%"=="15" goto HASH
+if "%choix%"=="16" goto IMAGE
+if "%choix%"=="17" goto USER
+if "%choix%"=="18" goto REPORT
+if "%choix%"=="19" goto HTML
+if "%choix%"=="20" goto TOOLS
+
+
+goto MENU
